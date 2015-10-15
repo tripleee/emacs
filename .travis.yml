@@ -1,0 +1,20 @@
+language: c
+sudo: false
+addons:
+  apt:
+    packages:
+      - devscripts
+      - automake
+      - texinfo
+      - install-info
+branches:
+  only:
+    - travis-snapshot
+script:
+  - debuild -r fakeroot -us -uc -b
+  - for d in ../*.deb *.deb */*.deb; do
+    for o in I c; do
+        test -e "$d" || continue;
+        printf "=== dpkg-deb -%s %s ===\n" "$o" "$d";
+        dpkg-deb -$o "$d";
+    done; done

@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+.PHONY: build clean build-arch build-indep install \
+	binary binary-arch binary-indep 
+build-arch:
+	./autogen.sh
+	./configure --without-all --without-x --with-x-toolkit=no \
+	            --without-pop --without-makeinfo \
+	            --prefix=$(shell pwd)/debian/emacs-snapshot
+	make -j2 V=0
+
+binary-arch: #build-arch
+	make -j2 V=0 install
+	dpkg-shlibdeps debian/emacs-snapshot/bin/*
+	mkdir -p debian/emacs-snapshot/DEBIAN
+	dpkg-gencontrol -Pdebian/emacs-snapshot
+	dpkg-deb -b debian/emacs-snapshot .
+
+build: build-arch build-indep
+binary: binary-arch binary-indep
+binary-indep: #build-indep
+build-indep binary binary-indep:
+	@echo Target $@ is required but not really necessary.
+clean:
+	@echo Not doing any real cleaning.
+	@echo Rebuild from scratch if you want that

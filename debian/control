@@ -1,0 +1,25 @@
+Source: emacs-snapshot
+Section: editors
+Priority: extra
+Maintainer: tripleee <emacs-snapshot-travis@eeera.imap.cc>
+Build-Depends: automake, texinfo
+Standards-Version: 3.9.4
+Homepage: https://github.com/tripleee/emacs-snapshot-travis
+
+Package: emacs-snapshot
+Architecture: any
+Depends: ${shlibs:Depends}
+X-Clude: ${misc:Depends} # because we are not using dh
+Description: Simple emacs-snapshot for Travis-CI
+ Simple, straight-shooting, monolithic, minimalistic trunk build from
+ the current Emacs upstream sources, suitable for automated building and
+ testing.
+ .
+ There is no X, no DBus, no audio, no frills.
+ .
+ This package differs from traditional Debian/Ubuntu Emacs builds in that
+ it does not try to be compatible with emacsen-common or the useful but
+ complex Debian Emacs Policy.
+ .
+ Therefore, this is NOT suitable for building or testing Debian packages
+ which depend on the `emacsen' virtual package.

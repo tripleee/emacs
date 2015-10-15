@@ -1,0 +1,8 @@
+emacs-snapshot (0.0) unstable; urgency=low
+
+  * This changelog file is regenerated on each build.  Please look
+    into the upstream changelog instead, for Emacs changes, or the
+    build job's <https://github.com/tripleee/emacs-snapshot-travis>
+    history.
+
+ -- tripleee <emacs-snapshot-travis@eeera.imap.cc>  Mon, 12 Oct 2015 05:42:19 +0000
